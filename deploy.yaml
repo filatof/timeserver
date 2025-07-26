@@ -15,4 +15,23 @@ spec:
       containers:
         - name: timeserver-container
           image: registry.eqlan.ru/fill/myserver:v0.1
- 
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            httpGet:
+              path: /readyz
+              port: 80
+              scheme: HTTP
+            timeoutSeconds: 2
+            failureThreshold: 1
+            successThreshold: 1
+          livenessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            httpGet:
+              path: /healthz
+              port: 80
+              scheme: HTTP
+            timeoutSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
