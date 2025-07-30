@@ -1,5 +1,6 @@
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from datetime import datetime
+from pi import *
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -19,6 +20,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                     self.respond_with(503, "Not Ready")
             case _:
                 self.respond_with(404, "Not Found")
+            case '/pi':
+                pi = leibniz_pi(1000000)
+                self.respond_with(200, str(pi))
 
     def respond_with(self, status_code: int, content: str) -> None:
         self.send_response(status_code)
