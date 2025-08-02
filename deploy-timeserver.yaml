@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - name: timeserver-container
-          image: registry.eqlan.ru/fill/myserver:v0.2
-          imagePullPolicy: Never
+          image: registry.eqlan.ru/fill/myserver:v0.4
+          #imagePullPolicy: Never
           resources:
             requests:
               cpu: 100m

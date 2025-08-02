@@ -1,6 +1,9 @@
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from datetime import datetime
 from pi import *
+import urllib.request
+import os
+import random
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -21,6 +24,17 @@ class RequestHandler(BaseHTTPRequestHandler):
             case '/pi':
                 pi = leibniz_pi(1000000)
                 self.respond_with(200, str(pi))
+            case '/avatar':
+                url = os.environ['AVATAR_ENDPOINT'] + "/" + str(random.randint(0, 100))
+                try:
+                    with urllib.request.urlopen(url) as f:
+                        data = f.read()
+                        self.send_response(200)
+                        self.send_header('Content-type', 'image/png')
+                        self.end_headers()
+                        self.wfile.write(data)
+                except urllib.error.URLError as e:
+                    self.respond_with(500, e.reason)
             case _:
                 self.respond_with(404, "Not Found")
         
