@@ -21,6 +21,9 @@ spec:
         - name: timeserver-container
           image: registry.eqlan.ru/fill/myserver:v0.4
           #imagePullPolicy: Never
+          env:
+            - name: AVATAR_ENDPOINT
+              value: http://$(ROBOHASH_INTERNAL_SERVICE_HOST)
           resources:
             requests:
               cpu: 100m
