@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: timeserver-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: timeserver.eqlan.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: timeserver
+                port:
+                  number: 80
+    - host: robohash.eqlan.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: robohash-internal
+                port:
+                  number: 80
