@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: timeserver-container
-          image: registry.eqlan.ru/fill/myserver:v0.4
+          image: filatof/myserver:v0.4
           #imagePullPolicy: Never
           env:
             - name: AVATAR_ENDPOINT
