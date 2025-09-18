@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: robohash-container
-          image: registry.eqlan.ru/fill/robohash:v1.0
+          image: filatof/robohash:v1.0
           resources:
             requests:
               cpu: 200m
